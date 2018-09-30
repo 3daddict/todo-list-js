@@ -1,5 +1,8 @@
 $(document).ready(todoAppLoaded);
 
+let listArray = [];
+
+
 function todoAppLoaded(){
     console.log('ToDo App Ready');
     $('#submitButton').click(addItem);
@@ -7,7 +10,6 @@ function todoAppLoaded(){
 }
 
 function addItem(){
-    console.log('Add item button clicked')
     let todoInput = $('#todoInput');
     let listItem = todoInput.val();
     let listcontainer = $('.list-container');
@@ -21,9 +23,17 @@ function addItem(){
     listCard.append(listText);
     listText.append(listDragIcon, listItem, listEditIcon, listDeleteIcon);
     todoInput.val("");
+
+    listArray.push({
+        id: listArray.length,
+        item: listItem
+    });
+    console.log(listArray);
 }
 
 function deleteItem(card){
-    console.log('Item to delete Card');
     $(card).closest('.list-card').remove();
+    for (var listIndex in listArray) {
+        listArray.pop(listArray[card.id]);
+      }
 }

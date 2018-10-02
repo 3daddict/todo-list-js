@@ -9,6 +9,9 @@ function todoAppLoaded() {
     //  $('#submitButton').click(addItem);
     $('#submitButton').click(inputValidation);
     keyValidation();
+    $( function() {
+        $( ".list-container" ).sortable();
+      } );
 }
 
 function keyValidation(){
@@ -40,8 +43,8 @@ function inputValidation() {
 function addItem() {
     let todoInput = $('#todoInput');
     let listItem = todoInput.val();
-    let listcontainer = $('.list-container');
-    let listCard = $('<div>').addClass('list-card');
+    let listcontainer = $('.list-container')
+    let listCard = $('<div>').addClass('list-card sortable');
     let listDragIcon = $('<i class="fas fa-ellipsis-v"></i>')
     let listText = $('<p>').addClass('list_text');
     let listEditIcon = $('<i class="fas fa-edit"></i>');

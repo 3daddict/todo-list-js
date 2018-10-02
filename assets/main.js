@@ -6,9 +6,13 @@ let listID = 0;
 
 function todoAppLoaded() {
     console.log('ToDo App Ready');
-
-    $('#submitButton').click(addItem);
-
+    $('#inputForm input').blur(function () {
+        if (!$(this).val()) {
+            $(this).parents('p').addClass('warning');
+        } else {
+            $('#submitButton').click(addItem);
+        }
+    });
 }
 
 function addItem() {

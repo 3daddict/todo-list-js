@@ -7,18 +7,20 @@
     <title>ToDo List</title>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link rel="stylesheet" href="/assets/styles.css">
+    <link rel="stylesheet" href="./assets/styles.css">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/assets/main.js"></script>
+    <script type="text/javascript" src="./assets/main.js"></script>
 </head>
 <body>
     <div class="container">
         <h1>ToDo List</h1>
         <p>Enter an item that needs to be done</p>
         <p id="errorMsg"></p>
+        <form id="inputForm">
         <input type="text" id="todoInput" placeholder="Enter an item" autocomplete="off" />
         <button type="button" id="submitButton">Enter</button>
+    </form>
     </div>
     <div class="list-container">
 

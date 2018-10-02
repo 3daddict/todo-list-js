@@ -1,6 +1,7 @@
 $(document).ready(todoAppLoaded);
 
 let listArray = [];
+let listID = 0;
 
 
 function todoAppLoaded(){
@@ -17,7 +18,7 @@ function addItem(){
     let listDragIcon = $('<i class="fas fa-ellipsis-v"></i>')
     let listText = $('<p>').addClass('list_text');
     let listEditIcon = $('<i class="fas fa-edit"></i>');
-    let listDeleteIcon = $('<i class="fas fa-ban"></i>').attr('onclick', 'deleteItem(this)');
+    let listDeleteIcon = $('<i class="fas fa-ban"></i>').attr('id', listID++).attr('onclick', 'deleteItem(this, this.id)');
 
     listcontainer.append(listCard);
     listCard.append(listText);
@@ -31,9 +32,10 @@ function addItem(){
     console.log(listArray);
 }
 
-function deleteItem(card){
+function deleteItem(card, cardID){
     $(card).closest('.list-card').remove();
-    for (var listIndex in listArray) {
-        listArray.pop(listArray[card.id]);
-      }
+    console.log("THIS: " + cardID);
+        if (listArray[cardID].field == cardID) {
+            listArray.splice(cardID,1);
+        }
 }

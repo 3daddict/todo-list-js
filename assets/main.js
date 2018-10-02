@@ -35,5 +35,7 @@ function addItem(){
 function deleteItem(card, cardID){
     $(card).closest('.list-card').remove();
     console.log("THIS: " + cardID);
-
+    listArray = listArray.filter(function(item) {
+        return item.id != cardID;
+    })
 }

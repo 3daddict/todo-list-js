@@ -35,7 +35,5 @@ function addItem(){
 function deleteItem(card, cardID){
     $(card).closest('.list-card').remove();
     console.log("THIS: " + cardID);
-        if (listArray[cardID].field == cardID) {
-            listArray.splice(cardID,1);
-        }
+
 }

@@ -7,17 +7,8 @@ let listID = 0;
 function todoAppLoaded() {
     console.log('ToDo App Ready');
 
-    let checkInput = $('#todoInput').val()
-    if (checkInput == '') {
-        return false;
-    } else {
-        $("#todoInput").keypress(function (event) {
-            if (event.keyCode == 13) {
-                $('#submitButton').click(addItem);
-                return;
-            }
-        });
-    }
+    $('#submitButton').click(addItem);
+
 }
 
 function addItem() {

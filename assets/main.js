@@ -6,13 +6,35 @@ let listID = 0;
 
 function todoAppLoaded() {
     console.log('ToDo App Ready');
-    $('#inputForm input').blur(function () {
-        if (!$(this).val()) {
-            $(this).parents('p').addClass('warning');
+    //  $('#submitButton').click(addItem);
+    $('#submitButton').click(inputValidation);
+    keyValidation();
+}
+
+function keyValidation(){
+    $('#todoInput').keypress(function (e) {
+        if (e.which == 13) {
+            console.log('Event: ' + e);
+            inputValidation();
+          return false;    //<---- Add this line
+        }
+      });
+}
+
+function inputValidation() {
+    var empty = true;
+    $('#todoInput[type="text"]').each(function () {
+        if ($(this).val() == "") {
+            console.log('Please enter input');
+            empty = false;
+            return false;
         } else {
-            $('#submitButton').click(addItem);
+            addItem();
+            empty = true
+            return true;
         }
     });
+
 }
 
 function addItem() {

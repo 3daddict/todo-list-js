@@ -4,13 +4,23 @@ let listArray = [];
 let listID = 0;
 
 
-function todoAppLoaded(){
+function todoAppLoaded() {
     console.log('ToDo App Ready');
-    $('#submitButton').click(addItem);
 
+    let checkInput = $('#todoInput').val()
+    if (checkInput == '') {
+        return false;
+    } else {
+        $("#todoInput").keypress(function (event) {
+            if (event.keyCode == 13) {
+                $('#submitButton').click(addItem);
+                return;
+            }
+        });
+    }
 }
 
-function addItem(){
+function addItem() {
     let todoInput = $('#todoInput');
     let listItem = todoInput.val();
     let listcontainer = $('.list-container');
@@ -32,10 +42,10 @@ function addItem(){
     console.log(listArray);
 }
 
-function deleteItem(card, cardID){
+function deleteItem(card, cardID) {
     $(card).closest('.list-card').remove();
     console.log("THIS: " + cardID);
-    listArray = listArray.filter(function(item) {
+    listArray = listArray.filter(function (item) {
         return item.id != cardID;
     })
 }

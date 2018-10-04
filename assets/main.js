@@ -10,9 +10,12 @@ function todoAppLoaded() {
     //  $('#submitButton').click(addItem);
     $('#submitButton').click(inputValidation);
     keyValidation();
-    $( function() {
+    $(function() {
         $( ".list-container" ).sortable();
-      } );
+    });
+    
+    editBtnClickHandler(event, this.edit)
+    
 }
 
 function keyValidation(){
@@ -48,20 +51,17 @@ function addItem() {
     let listCard = $('<div>').addClass('list-card sortable');
     let listDragIcon = $('<i class="fas fa-ellipsis-v"></i>')
     let listText = $('<p>').addClass('list_text');
-    let editSpan = $('<span>').addClass('editInput');
-    let editInput = $('<input>').addClass('edit-input hiddenInput');
-    let editButton = $('<button>').addClass('editBtn hiddenInput').text('X').attr('type', 'button').attr('onclick', 'editBtnOperation()');
-    let listEditIcon = $('<i class="fas fa-edit"></i>').attr('id', "E" + editID).attr('onclick', 'editItem(this,' + editID++ + ')');
+    let listEditIcon = $('<i class="fas fa-edit"></i>').attr('edit', editID++);
     let listDeleteIcon = $('<i class="fas fa-ban"></i>').attr('id', listID++).attr('onclick', 'deleteItem(this, this.id)');
 
     listcontainer.append(listCard);
     listCard.append(listText);
-    editSpan.append(editInput, editButton)
-    listText.append(listDragIcon, listItem, editSpan, listEditIcon, listDeleteIcon);
+    listText.append(listDragIcon, listItem, listEditIcon, listDeleteIcon);
     todoInput.val("");
 
     listArray.push({
         id: listArray.length,
+        edit: listArray.length,
         item: listItem
     });
     console.log(listArray);
@@ -75,18 +75,16 @@ function deleteItem(card, cardID) {
     })
 }
 
-function editItem(card, dataeditID) {
+function editItem(card, editID) {
+    console.log('CARD =' + card);
+    console.log("THIS: " + editID);
 
-    objIndex = listArray.findIndex((obj => obj.id == dataeditID));
-    listArray[objIndex].item = "Laila"
-
-    $('.edit-input').removeClass('hiddenInput');
-    $('.editBtn').removeClass('hiddenInput');
-    $('.edit-input').val('');
 }
 
-function editBtnOperation(){
-    console.log('Edit Value: ' + $('.edit-input').val());
-    $('.edit-input').addClass('hiddenInput');
-    $('.editBtn').addClass('hiddenInput');
+function editBtnClickHandler(){
+    $('body').on('click', '.fa-edit', function (event, data) {
+        console.log("Event: " + JSON.stringify(event));
+        console.log("This: " + JSON.stringify(data));
+    });
 }
+

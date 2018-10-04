@@ -15,6 +15,7 @@ function todoAppLoaded() {
     });
     
     editBtnClickHandler(this.id);
+    editBtnOperation(this)
     
 }
 
@@ -51,12 +52,16 @@ function addItem() {
     let listCard = $('<div>').addClass('list-card sortable');
     let listDragIcon = $('<i class="fas fa-ellipsis-v"></i>')
     let listText = $('<p>').addClass('list_text');
+    let editSpan = $('<span>').addClass('editInput');
+    let editInput = $('<input>').addClass('edit-input hiddenInput');
+    let editButton = $('<button>').addClass('editBtn hiddenInput').text('X').attr('type', 'button')
     let listEditIcon = $('<i class="fas fa-edit"></i>').attr('id', "E" + editID++);
     let listDeleteIcon = $('<i class="fas fa-ban"></i>').attr('id', listID++).attr('onclick', 'deleteItem(this, this.id)');
 
     listcontainer.append(listCard);
     listCard.append(listText);
-    listText.append(listDragIcon, listItem, listEditIcon, listDeleteIcon);
+    editSpan.append(editInput, editButton)
+    listText.append(listDragIcon, listItem, editSpan, listEditIcon, listDeleteIcon);
     todoInput.val("");
 
     listArray.push({
@@ -75,16 +80,22 @@ function deleteItem(card, cardID) {
     })
 }
 
-function editItem(card, editID) {
-    console.log('CARD =' + card);
-    console.log("THIS: " + editID);
-
-}
-
 function editBtnClickHandler(){
     $('body').on('click', '.fa-edit', function () {
         var editID = this.id;
         console.log('ClickedID: ' + editID);
+        $('.edit-input').removeClass('hiddenInput');
+        $('.editBtn').removeClass('hiddenInput');
+        $('.edit-input').val('');
+    });
+}
+
+function editBtnOperation(){
+    $('body').on('click', '.editBtn', function () {
+    console.log('Edit Value: ' + $('.edit-input').val());
+    $('.edit-input').addClass('hiddenInput');
+    $('.editBtn').addClass('hiddenInput');
+
     });
 }
 

@@ -72,12 +72,9 @@ function deleteItem(card, cardID) {
 }
 
 function editItem(card, dataeditID) {
-    $(card).closest('.list-card').text("Laila");
+    // $(card).closest('.list-card').text("Laila");
 
-    $.each(listArray, function() {
-        if (this.id == listArray[item].id) {
-            this.item = "Your new description";
-        }
-    });
-
+    objIndex = listArray.findIndex((obj => obj.id == dataeditID));
+    listArray[objIndex].item = "Laila"
+//https://stackoverflow.com/questions/33267797/turn-text-element-into-input-field-type-text-when-clicked-and-change-back-to-tex
 }

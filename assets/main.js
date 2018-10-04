@@ -14,7 +14,7 @@ function todoAppLoaded() {
         $( ".list-container" ).sortable();
     });
     
-    editBtnClickHandler(event, this.edit)
+    editBtnClickHandler(this.id);
     
 }
 
@@ -51,7 +51,7 @@ function addItem() {
     let listCard = $('<div>').addClass('list-card sortable');
     let listDragIcon = $('<i class="fas fa-ellipsis-v"></i>')
     let listText = $('<p>').addClass('list_text');
-    let listEditIcon = $('<i class="fas fa-edit"></i>').attr('edit', editID++);
+    let listEditIcon = $('<i class="fas fa-edit"></i>').attr('id', "E" + editID++);
     let listDeleteIcon = $('<i class="fas fa-ban"></i>').attr('id', listID++).attr('onclick', 'deleteItem(this, this.id)');
 
     listcontainer.append(listCard);
@@ -82,9 +82,9 @@ function editItem(card, editID) {
 }
 
 function editBtnClickHandler(){
-    $('body').on('click', '.fa-edit', function (event, data) {
-        console.log("Event: " + JSON.stringify(event));
-        console.log("This: " + JSON.stringify(data));
+    $('body').on('click', '.fa-edit', function () {
+        var editID = this.id;
+        console.log('ClickedID: ' + editID);
     });
 }
 

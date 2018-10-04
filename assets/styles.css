@@ -1,0 +1,11 @@
+.list_text{
+    position: relative;
+}
+.editInput {
+    position: absolute;
+    left: 7px;
+    top: -2px;
+}
+.hiddenInput {
+    display: none;
+}

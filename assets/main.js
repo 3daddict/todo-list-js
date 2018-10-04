@@ -48,12 +48,16 @@ function addItem() {
     let listCard = $('<div>').addClass('list-card sortable');
     let listDragIcon = $('<i class="fas fa-ellipsis-v"></i>')
     let listText = $('<p>').addClass('list_text');
+    let editSpan = $('<span>').addClass('editInput');
+    let editInput = $('<input>').addClass('edit-input hiddenInput');
+    let editButton = $('<button>').addClass('editBtn hiddenInput').text('X').attr('type', 'button').attr('onclick', 'editBtnOperation()');
     let listEditIcon = $('<i class="fas fa-edit"></i>').attr('id', "E" + editID).attr('onclick', 'editItem(this,' + editID++ + ')');
     let listDeleteIcon = $('<i class="fas fa-ban"></i>').attr('id', listID++).attr('onclick', 'deleteItem(this, this.id)');
 
     listcontainer.append(listCard);
     listCard.append(listText);
-    listText.append(listDragIcon, listItem, listEditIcon, listDeleteIcon);
+    editSpan.append(editInput, editButton)
+    listText.append(listDragIcon, listItem, editSpan, listEditIcon, listDeleteIcon);
     todoInput.val("");
 
     listArray.push({
@@ -72,9 +76,17 @@ function deleteItem(card, cardID) {
 }
 
 function editItem(card, dataeditID) {
-    // $(card).closest('.list-card').text("Laila");
 
     objIndex = listArray.findIndex((obj => obj.id == dataeditID));
     listArray[objIndex].item = "Laila"
-//https://stackoverflow.com/questions/33267797/turn-text-element-into-input-field-type-text-when-clicked-and-change-back-to-tex
+
+    $('.edit-input').removeClass('hiddenInput');
+    $('.editBtn').removeClass('hiddenInput');
+    $('.edit-input').val('');
+}
+
+function editBtnOperation(){
+    console.log('Edit Value: ' + $('.edit-input').val());
+    $('.edit-input').addClass('hiddenInput');
+    $('.editBtn').addClass('hiddenInput');
 }

@@ -48,7 +48,7 @@ function addItem() {
     let listCard = $('<div>').addClass('list-card sortable');
     let listDragIcon = $('<i class="fas fa-ellipsis-v"></i>')
     let listText = $('<p>').addClass('list_text');
-    let listEditIcon = $('<i class="fas fa-edit"></i>').attr('data-edit', editID++).attr('onclick', 'editItem(this, this.dataEdit)');
+    let listEditIcon = $('<i class="fas fa-edit"></i>').attr('id', "E" + editID).attr('onclick', 'editItem(this,' + editID++ + ')');
     let listDeleteIcon = $('<i class="fas fa-ban"></i>').attr('id', listID++).attr('onclick', 'deleteItem(this, this.id)');
 
     listcontainer.append(listCard);
@@ -58,7 +58,6 @@ function addItem() {
 
     listArray.push({
         id: listArray.length,
-        dataEdit: listArray.length,
         item: listItem
     });
     console.log(listArray);
@@ -72,7 +71,13 @@ function deleteItem(card, cardID) {
     })
 }
 
-function editItem(card, editID) {
+function editItem(card, dataeditID) {
+    $(card).closest('.list-card').text("Laila");
 
+    $.each(listArray, function() {
+        if (this.id == listArray[item].id) {
+            this.item = "Your new description";
+        }
+    });
 
 }

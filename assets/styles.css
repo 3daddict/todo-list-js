@@ -3,6 +3,8 @@
 *************************/
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -10,12 +12,15 @@ body {
     min-height: 100vh;
     flex-direction: row;
     margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
     color: #363636;
     font-weight: 600;
     line-height: 1.125;
+    font-family: 'Nunito Sans', sans-serif;
 }
 
 h1 {
@@ -63,87 +68,130 @@ p {
 /*
 * ==== RESETS ====
 */
-* {
-    margin: 0;
-    padding: 0;
-  }
-  
-  *,
-  *:before,
-  *:after {
-    box-sizing: border-box;
-  }
-  
-  .wrapper {
-    display: flex;
-    height: 100%;
-    padding: 20px;
-  }
-  
-  /*
-  * ==== SIDEBAR ====
-  */
-  .sidebar {
-    display: flex;
-    min-height: 100%;
-    flex-grow: 1;
-    transition: all 0.3s;
-  }
-  .sidebar.isClosed {
-    flex-grow: 0;
-  }
-  .sidebar ul.nav {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    opacity: 1;
-  }
-  .sidebar ul.nav.isClosed {
-    display: none;
-  }
-  .sidebar ul.nav li {
-    list-style: none;
-    padding: 20px 0;
-  }
-  .sidebar ul.nav li a {
-    text-decoration: none;
-  }
-  .sidebar div {
-    align-self: flex-end;
-  }
-  
-  /*
-  * ==== CONTENT ====
-  */
-  .content {
-    background-color: #f6f7f8;
-    min-height: 100%;
-    flex-grow: 9;
-    padding: 40px;
-    transform: translate3d(0, 0, 0);
-    transition: transform 0.3s;
-  }
-  
-  /*
-  * ==== TOGGLE BUTTON ====
-  */
-  a.button {
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-  }
-  a.button:before {
-    content: "\f0c9";
-    font: 30px fontawesome;
-  }
-  
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+.wrapper {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+/*
+* ==== SIDEBAR ====
+*/
+.sidebar {
+  display: flex;
+  min-height: 100%;
+  transition: all 0.3s;
+}
+.sidebar.isClosed {
+  flex-grow: 0;
+}
+.sidebar ul.nav {
+  margin: 40px;
+  flex-direction: column;
+  width: 100%;
+  opacity: 1;
+}
+.sidebar ul.nav.isClosed {
+  display: none;
+}
+.sidebar ul.nav li {
+  list-style: none;
+  padding: 6px 0;
+}
+.sidebar ul.nav li a {
+  text-decoration: none;
+}
+.sidebar div {
+  align-self: flex-end;
+}
+
+/*
+* ==== CONTENT ====
+*/
+.content {
+  flex-direction: row;
+  flex: 1;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  background-color: #f6f7f8;
+  padding: 40px;
+}
+
+/*
+* ==== TOGGLE BUTTON ====
+*/
+.side-button {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+}
+.side-button::after {
+  font-family: "Font Awesome 5 Pro";
+  font-weight: 300;
+  content: "\f100";
+}
+.side-button.arrow::after {
+  font-family: "Font Awesome 5 Pro";
+  font-weight: 300;
+  content: "\f101";
+}
+
 /*************************
 * todo section
 *************************/
+.form-container{
+  margin-bottom: 25px;
+}
+input {
+  border-style: none;
+  border-image: none;
+}
+.item-input {
+  position: relative;
+  background-color: #fff;
+  border-color: #dbdbdb;
+  color: #363636;
+  box-shadow: inset 0 1px 2px rgba(10,10,10,.1);
+  max-width: 80%;
+  width: 80%;
+  height: 2.25em;
+  line-height: 1.5;
+  padding: 8px;
+  border-radius: 20px;
+}
+
+.item-input[type="button"] {
+  margin-left: -50px;
+}
+
+.submit-button {
+  background: none;
+  color: #209cee;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
 .list-card {
     display: flex;
     flex-direction: row;
+    margin: 4px;
+    padding: 8px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
 }
 
 .list-container {

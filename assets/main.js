@@ -7,9 +7,10 @@ let editID = 0;
 function todoAppLoaded() {
     console.log('ToDo App Ready');
 
-    $('.button').on('click', function() {
+    $('.side-button').on('click', function() {
 		$('.sidebar').toggleClass('isClosed');
-		$('.sidebar ul.nav').toggleClass('isClosed');
+        $('.sidebar ul.nav').toggleClass('isClosed');
+        $('.side-button').toggleClass('arrow');
 	});
 
     $('#submitButton').click(inputValidation);

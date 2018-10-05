@@ -1,11 +1,25 @@
-.list_text{
+.list-card {
+    display: flex;
+    flex-direction: row;
+}
+
+.list-container {
+    display: inline-block;
     position: relative;
 }
+.list-text {
+    display: inline-block;
+}
+
+.edit-container {
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
 .editInput {
-    position: absolute;
-    left: 7px;
-    top: -2px;
+   
 }
 .hiddenInput {
-    display: none;
-}
+    /* display: none; */
+} 

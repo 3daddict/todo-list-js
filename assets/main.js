@@ -11,12 +11,11 @@ function todoAppLoaded() {
     $('#submitButton').click(inputValidation);
     keyValidation();
     $(function() {
-        $( ".list-container" ).sortable();
+        $( ".main-container" ).sortable();
     });
-    
-    editBtnClickHandler(this.id);
-    editBtnOperation(this)
-    
+
+    deleteListItem();
+    editListItem();
 }
 
 function keyValidation(){
@@ -48,25 +47,32 @@ function inputValidation() {
 function addItem() {
     let todoInput = $('#todoInput');
     let listItem = todoInput.val();
-    let listcontainer = $('.list-container')
-    let listCard = $('<div>').addClass('list-card sortable');
-    let listDragIcon = $('<i class="fas fa-ellipsis-v"></i>')
-    let listText = $('<p>').addClass('list_text');
+    let mainContainer = $('.main-container')
+
+    let listCard = $('<div>').addClass('list-card sortable').attr('id', listID++);
+
+    let listContainer = $('<div>').addClass('list-container');
+    let listDragIcon = $('<i class="fas fa-ellipsis-v"></i>');
+    let listText = $('<p>').addClass('list-text').append(listItem);
+    let listEditIcon = $('<i class="fas fa-edit"></i>');
+    let listDeleteIcon = $('<i class="fas fa-ban"></i>');
+
+    let editContainer = $('<div>').addClass('edit-container');
     let editSpan = $('<span>').addClass('editInput');
     let editInput = $('<input>').addClass('edit-input hiddenInput');
-    let editButton = $('<button>').addClass('editBtn hiddenInput').text('X').attr('type', 'button')
-    let listEditIcon = $('<i class="fas fa-edit"></i>').attr('id', "E" + editID++);
-    let listDeleteIcon = $('<i class="fas fa-ban"></i>').attr('id', listID++).attr('onclick', 'deleteItem(this, this.id)');
+    let editButton = $('<button>').addClass('editBtn hiddenInput').attr('type', 'button')
+    let editFontIcon = $('<i class="far fa-hand-pointer"></i>')
+    editButton.append(editFontIcon);
 
-    listcontainer.append(listCard);
-    listCard.append(listText);
-    editSpan.append(editInput, editButton)
-    listText.append(listDragIcon, listItem, editSpan, listEditIcon, listDeleteIcon);
+    mainContainer.append(listCard);
+    listCard.append(listContainer, editContainer);
+    listContainer.append(listDragIcon, listText, listEditIcon, listDeleteIcon);
+    editContainer.append(editSpan, editInput, editButton);
+    
     todoInput.val("");
 
     listArray.push({
         id: listArray.length,
-        edit: listArray.length,
         item: listItem
     });
     console.log(listArray);
@@ -80,22 +86,54 @@ function deleteItem(card, cardID) {
     })
 }
 
-function editBtnClickHandler(){
-    $('body').on('click', '.fa-edit', function () {
-        var editID = this.id;
-        console.log('ClickedID: ' + editID);
-        $('.edit-input').removeClass('hiddenInput');
-        $('.editBtn').removeClass('hiddenInput');
-        $('.edit-input').val('');
-    });
+function deleteListItem(){
+$('body').on('click', '.list-card .fa-ban', function () {
+    let listCardID = $(this).closest(".list-card").prop("id");
+    let listCardText = $(this).parent().parent().text();
+
+    console.log('Ban list-card ID: ' + listCardID);// list-card ID Value
+    console.log('Ban list-text: ' + listCardText); //list card original text value
+
+    
+    //Loop through array and use this id to slice out this index
+    for(let i = 0; i < listArray.length; i++) {
+    if(listArray[i].id == listCardID) {
+        $(this).parent().parent().remove()
+        listArray.splice(i, 1);
+        break;
+    }
+    console.log(listArray); 
+}
+    
+});
 }
 
-function editBtnOperation(){
-    $('body').on('click', '.editBtn', function () {
-    console.log('Edit Value: ' + $('.edit-input').val());
-    $('.edit-input').addClass('hiddenInput');
-    $('.editBtn').addClass('hiddenInput');
+// function editBtnClickHandler(){
+//     $('body').on('click', '.fa-edit', function () {
+//         var editID = this.id;
+//         console.log('ClickedID: ' + editID);
+//         $('.edit-input').removeClass('hiddenInput');
+//         $('.editBtn').removeClass('hiddenInput');
+//         $('.edit-input').val('');
+//     });
+// }
 
+// function editBtnOperation(){
+//     $('body').on('click', '.editBtn', function () {
+//     console.log('Edit Value: ' + $('.edit-input').val());
+//     $('.edit-input').addClass('hiddenInput');
+//     $('.editBtn').addClass('hiddenInput');
+
+//     });
+// }
+
+function editListItem(){
+    $('body').on('click', '.list-card .fa-edit', function () {
+        let listCardID = $(this).closest(".list-card").prop("id");
+        let listCardText = $(this).parent().parent().text();
+
+        console.log('Edit list-card ID: ' + listCardID);// list-card ID Value
+        console.log('Edit list-text: ' + listCardText); //list card original text value
+        
     });
 }
-

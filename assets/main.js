@@ -110,10 +110,25 @@ function editListItem(){
 
 function editSubmitButton(listContainer){
     $('body').on('click', '.list-card .editBtn', function () {
-    $(this).parent().parent().find('.edit-input').val('');
     console.log('Submit button clicked');
+    let listCardID = $(this).closest(".list-card").prop("id");
+    let inputText = $(this).parent().find('.edit-input').val();
+    let updatedText = $(this).parent().parent().find('.list-text');
+
+    // console.log($(this).parent().find('.edit-input').val());
+    console.log('ID: ' + listCardID);
+    console.log('Updated Text: ' + inputText);
+    updatedText.text(inputText);
+    //finds the index through this id and updates the array object
+    objIndex = listArray.findIndex((obj => obj.id == listCardID));
+    listArray[objIndex].item = inputText;
+
+    
+    
+
 
     listContainer.removeClass('hiddenInput');
     $(this).parent().parent().find('.edit-container').addClass('hiddenInput');
+    $(inputText).val('');
     });
 }

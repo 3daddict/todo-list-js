@@ -57,10 +57,10 @@ function addItem() {
     let listEditIcon = $('<i class="fas fa-edit"></i>');
     let listDeleteIcon = $('<i class="fas fa-ban"></i>');
 
-    let editContainer = $('<div>').addClass('edit-container');
+    let editContainer = $('<div>').addClass('edit-container hiddenInput');
     let editSpan = $('<span>').addClass('editInput');
-    let editInput = $('<input>').addClass('edit-input hiddenInput');
-    let editButton = $('<button>').addClass('editBtn hiddenInput').attr('type', 'button')
+    let editInput = $('<input>').addClass('edit-input');
+    let editButton = $('<button>').addClass('editBtn').attr('type', 'button')
     let editFontIcon = $('<i class="far fa-hand-pointer"></i>')
     editButton.append(editFontIcon);
 
@@ -78,62 +78,42 @@ function addItem() {
     console.log(listArray);
 }
 
-function deleteItem(card, cardID) {
-    $(card).closest('.list-card').remove();
-    console.log("THIS: " + cardID);
-    listArray = listArray.filter(function (item) {
-        return item.id != cardID;
-    })
-}
-
 function deleteListItem(){
 $('body').on('click', '.list-card .fa-ban', function () {
     let listCardID = $(this).closest(".list-card").prop("id");
-    let listCardText = $(this).parent().parent().text();
+    //let listCardText = $(this).parent().parent().text();
 
-    console.log('Ban list-card ID: ' + listCardID);// list-card ID Value
-    console.log('Ban list-text: ' + listCardText); //list card original text value
-
-    
     //Loop through array and use this id to slice out this index
     for(let i = 0; i < listArray.length; i++) {
     if(listArray[i].id == listCardID) {
         $(this).parent().parent().remove()
         listArray.splice(i, 1);
+        console.log(listArray); 
         break;
     }
-    console.log(listArray); 
 }
     
 });
 }
 
-// function editBtnClickHandler(){
-//     $('body').on('click', '.fa-edit', function () {
-//         var editID = this.id;
-//         console.log('ClickedID: ' + editID);
-//         $('.edit-input').removeClass('hiddenInput');
-//         $('.editBtn').removeClass('hiddenInput');
-//         $('.edit-input').val('');
-//     });
-// }
-
-// function editBtnOperation(){
-//     $('body').on('click', '.editBtn', function () {
-//     console.log('Edit Value: ' + $('.edit-input').val());
-//     $('.edit-input').addClass('hiddenInput');
-//     $('.editBtn').addClass('hiddenInput');
-
-//     });
-// }
-
 function editListItem(){
     $('body').on('click', '.list-card .fa-edit', function () {
-        let listCardID = $(this).closest(".list-card").prop("id");
-        let listCardText = $(this).parent().parent().text();
+        //let listCardID = $(this).closest(".list-card").prop("id");
+        let listContainer = $(this).closest(".list-container");
 
-        console.log('Edit list-card ID: ' + listCardID);// list-card ID Value
-        console.log('Edit list-text: ' + listCardText); //list card original text value
+        $(this).parent().parent().find('.edit-container').removeClass('hiddenInput');
+        listContainer.addClass('hiddenInput');
         
+        editSubmitButton(listContainer);
+    });
+}
+
+function editSubmitButton(listContainer){
+    $('body').on('click', '.list-card .editBtn', function () {
+    $(this).parent().parent().find('.edit-input').val('');
+    console.log('Submit button clicked');
+
+    listContainer.removeClass('hiddenInput');
+    $(this).parent().parent().find('.edit-container').addClass('hiddenInput');
     });
 }

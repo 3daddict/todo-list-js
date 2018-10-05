@@ -170,8 +170,14 @@ input {
   border-radius: 20px;
 }
 
+.list-container{
+  width: 100%;
+  text-align: left;
+}
+
 .edit-container {
   width: 100%;
+  text-align: left;
 }
 
 .item-input input[type="text"] {

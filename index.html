@@ -15,18 +15,37 @@
     <script type="text/javascript" src="./assets/main.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>ToDo List</h1>
-        <p>Enter an item that needs to be done</p>
-        <p id="errorMsg"></p>
-        <form id="inputForm">
-        <input type="text" id="todoInput" placeholder="Enter an item" autocomplete="off" />
-        <button type="button" id="submitButton">Enter</button>
-    </form>
-    </div>
-    <div class="main-container">
+        <div id="wrapper" class="wrapper">
+			
+                <div id="aside" class="sidebar">
+                    <ul class="nav">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Experience</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Bio</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div><!-- /Aside -->
+    
+                <div id="content" class="content">
+                    <a class='button'></a>
+                   
+                    <div class="container">
+                            <h1>ToDo List</h1>
+                            <p>Enter an item that needs to be done</p>
+                            <form id="inputForm">
+                            <input type="text" id="todoInput" placeholder="Enter an item" autocomplete="off" />
+                            <button type="button" id="submitButton">Enter</button>
+                        </form>
+                        <p id="errorMsg"></p>
+                        </div>
+                        <div class="main-container">
+                    
+                        </div>
 
-    </div>
+
+                </div>
+            </div>
 
 </body>
 </html>

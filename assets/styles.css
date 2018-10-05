@@ -156,6 +156,7 @@ input {
   border-style: none;
   border-image: none;
 }
+
 .item-input, .edit-input {
   background-color: #fff;
   border-color: #dbdbdb;
@@ -167,6 +168,10 @@ input {
   line-height: 1.5;
   padding: 8px;
   border-radius: 20px;
+}
+
+.edit-container {
+  width: 100%;
 }
 
 .item-input input[type="text"] {
@@ -210,13 +215,6 @@ input {
 
 .list-text {
     display: inline-block;
-}
-
-.edit-container {
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
 }
 
 .hiddenInput {

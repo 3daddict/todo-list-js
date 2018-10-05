@@ -119,16 +119,16 @@ function editSubmitButton(listContainer){
     console.log('ID: ' + listCardID);
     console.log('Updated Text: ' + inputText);
     updatedText.text(inputText);
-    //finds the index through this id and updates the array object
-    objIndex = listArray.findIndex((obj => obj.id == listCardID));
-    listArray[objIndex].item = inputText;
 
-    
-    
-
+//finds the index through this id and updates the array object
+    $.each(listArray, function() {
+        if (this.id == listCardID) {
+            this.item = inputText;
+        }
+    });
 
     listContainer.removeClass('hiddenInput');
     $(this).parent().parent().find('.edit-container').addClass('hiddenInput');
-    $(inputText).val('');
+    
     });
 }

@@ -60,8 +60,6 @@ p {
     line-height: 1.5;
 }
 
-
-
 /*************************
   * flexbox setup
   *************************/
@@ -170,6 +168,12 @@ input {
   border-radius: 20px;
 }
 
+.item-input {
+  height: 45px;
+  font-size: 20px;
+  padding-left: 20px;
+}
+
 .list-container{
   width: 100%;
   text-align: left;
@@ -196,12 +200,14 @@ input {
 }
 .submit-button .fa-arrow-alt-circle-right {
   position: absolute;
-  top: 2px;
+  top: 2.5px;
   right: 2px;
+  border-radius: 50%;
+  box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
 }
 
 .submit-icon {
-  font-size: 28px;
+  font-size: 40px;
 }
 
 .list-card {
@@ -219,8 +225,18 @@ input {
     position: relative;
 }
 
+.drag-icon {
+  margin: 0 15px;
+}
+
 .list-text {
     display: inline-block;
+}
+
+.edit-button, .delete-button {
+  float: right;
+  margin: 0 4px;
+  font-size: 24px;
 }
 
 .hiddenInput {

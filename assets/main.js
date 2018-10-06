@@ -64,10 +64,10 @@ function addItem() {
     let listCard = $('<div>').addClass('list-card sortable').attr('id', listID++);
 
     let listContainer = $('<div>').addClass('list-container');
-    let listDragIcon = $('<i class="fas fa-ellipsis-v"></i>');
+    let listDragIcon = $('<i class="fal fa-ellipsis-v drag-icon"></i>');
     let listText = $('<p>').addClass('list-text').append(listItem);
-    let listEditIcon = $('<i class="fas fa-edit"></i>');
-    let listDeleteIcon = $('<i class="fas fa-ban"></i>');
+    let listEditIcon = $('<i class="fal fa-edit edit-button"></i>');
+    let listDeleteIcon = $('<i class="fal fa-ban delete-button"></i>');
 
     let editContainer = $('<div>').addClass('edit-container hiddenInput');
     let editSpan = $('<span>').addClass('editInput');
@@ -78,7 +78,7 @@ function addItem() {
     editButton.append(editFontIcon);
     mainContainer.append(listCard);
     listCard.append(listContainer, editContainer);
-    listContainer.append(listDragIcon, listText, listEditIcon, listDeleteIcon);
+    listContainer.append(listDragIcon, listText, listDeleteIcon, listEditIcon);
     editContainer.append(editSpan, editInput, editButton);
     todoInput.val("");
 

@@ -73,7 +73,7 @@ function addItem() {
     let editSpan = $('<span>').addClass('editInput');
     let editInput = $('<input>').addClass('edit-input');
     let editButton = $('<button>').addClass('editBtn').attr('type', 'button')
-    let editFontIcon = $('<i class="far fa-hand-pointer"></i>')
+    let editFontIcon = $('<i class="fas fa-mouse-pointer"></i>')
 
     editButton.append(editFontIcon);
     mainContainer.append(listCard);

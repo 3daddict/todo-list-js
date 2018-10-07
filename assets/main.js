@@ -64,10 +64,10 @@ function addItem() {
     let listCard = $('<div>').addClass('list-card sortable').attr('id', listID++);
 
     let listContainer = $('<div>').addClass('list-container');
-    let listDragIcon = $('<i class="fal fa-ellipsis-v drag-icon"></i>');
+    let listDragIcon = $('<i class="fal fa-sort"></i>');
     let listText = $('<p>').addClass('list-text').append(listItem);
-    let listEditIcon = $('<i class="fal fa-edit edit-button"></i>');
-    let listDeleteIcon = $('<i class="fal fa-ban delete-button"></i>');
+    let listEditIcon = $('<span data-tooltip="Edit"><i class="fal fa-edit edit-button"></i></span>');
+    let listDeleteIcon = $('<span data-tooltip="Remove"><i class="fal fa-ban delete-button"></i></span>');
 
     let editContainer = $('<div>').addClass('edit-container hiddenInput');
     let editSpan = $('<span>').addClass('editInput');

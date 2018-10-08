@@ -176,7 +176,7 @@ input {
   padding-left: 20px;
 }
 
-.item-input:active, .item-input:focus {
+.item-input:active {
   border-color: rgb(56, 147, 252);
   border-width: 2px;
 }

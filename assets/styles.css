@@ -115,6 +115,7 @@ p {
 .content {
   flex-direction: row;
   flex: 1;
+  height: 100vh;
   justify-content: center;
   text-align: center;
   position: relative;
@@ -215,7 +216,7 @@ input {
   padding: 0;
   cursor: pointer;
 }
-.submit-button .fa-arrow-alt-circle-right {
+.submit-button .fa-caret-circle-down {
   position: absolute;
   top: 2.5px;
   right: 2px;

@@ -95,7 +95,7 @@ function deleteListItem() {
         //Loop through array and use this id to slice out this index
         for (let i = 0; i < listArray.length; i++) {
             if (listArray[i].id == listCardID) {
-                $(this).parent().parent().remove()
+                $(this).parent().parent().parent().remove()
                 listArray.splice(i, 1);
                 break;
             }
@@ -107,7 +107,7 @@ function editListItem() {
     $('body').on('click', '.list-card .fa-edit', function () {
         let listContainer = $(this).closest(".list-container");
 
-        $(this).parent().parent().find('.edit-container').removeClass('hiddenInput');
+        $(this).parent().parent().parent().find('.edit-container').removeClass('hiddenInput');
         listContainer.addClass('hiddenInput');
 
         editSubmitButton(listContainer);
@@ -129,6 +129,6 @@ function editSubmitButton(listContainer) {
         });
 
         listContainer.removeClass('hiddenInput');
-        $(this).parent().parent().find('.edit-container').addClass('hiddenInput');
+        $(this).parent().parent().parent().find('.edit-container').addClass('hiddenInput');
     });
 }

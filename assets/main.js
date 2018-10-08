@@ -7,11 +7,11 @@ let editID = 0;
 function todoAppLoaded() {
     console.log('ToDo App Ready');
 
-    $('.side-button').on('click', function() {
-		$('.sidebar').toggleClass('isClosed');
+    $('.side-button').on('click', function () {
+        $('.sidebar').toggleClass('isClosed');
         $('.sidebar ul.nav').toggleClass('isClosed');
         $('.side-button').toggleClass('arrow');
-	});
+    });
 
     $('#submitButton').click(inputValidation);
     keyValidation();
@@ -23,10 +23,11 @@ function todoAppLoaded() {
 
     deleteListItem();
     editListItem();
+    editInputEnterKey();
 }
 
 function keyValidation() {
-    $('#todoInput').keypress(function (e) {  
+    $('#todoInput').keypress(function (e) {
         if (e.which == 13) {
             inputValidation();
             return false;
@@ -34,9 +35,9 @@ function keyValidation() {
     });
 }
 
-function errorMsg(){
+function errorMsg() {
     let inputValue = $('#todoInput')
-    if(inputValue != ''){
+    if (inputValue != '') {
         $('#errorMsg').text('');
     }
 }
@@ -95,7 +96,7 @@ function deleteListItem() {
         //Loop through array and use this id to slice out this index
         for (let i = 0; i < listArray.length; i++) {
             if (listArray[i].id == listCardID) {
-                $(this).parent().parent().remove()
+                $(this).parent().parent().parent().remove()
                 listArray.splice(i, 1);
                 break;
             }
@@ -107,7 +108,7 @@ function editListItem() {
     $('body').on('click', '.list-card .fa-edit', function () {
         let listContainer = $(this).closest(".list-container");
 
-        $(this).parent().parent().find('.edit-container').removeClass('hiddenInput');
+        $(this).parent().parent().parent().find('.edit-container').removeClass('hiddenInput');
         listContainer.addClass('hiddenInput');
 
         editSubmitButton(listContainer);
@@ -115,20 +116,42 @@ function editListItem() {
 }
 
 function editSubmitButton(listContainer) {
+
     $('body').on('click', '.list-card .editBtn', function () {
+
         let listCardID = $(this).closest(".list-card").prop("id");
         let inputText = $(this).parent().find('.edit-input').val();
         let updatedText = $(this).parent().parent().find('.list-text');
-        updatedText.text(inputText);
 
-        //finds the index through this id and updates the array object
-        $.each(listArray, function () {
-            if (this.id == listCardID) {
-                this.item = inputText;
-            }
-        });
+        if (inputText == "") {
 
-        listContainer.removeClass('hiddenInput');
-        $(this).parent().parent().find('.edit-container').addClass('hiddenInput');
+            empty = false;
+            return false;
+        } else {
+
+            updatedText.text(inputText);
+
+            //finds the index through this id and updates the array object
+            $.each(listArray, function () {
+                if (this.id == listCardID) {
+                    this.item = inputText;
+                }
+            });
+
+            listContainer.removeClass('hiddenInput');
+            $(this).parent().parent().parent().find('.edit-container').addClass('hiddenInput');
+
+            empty = true
+            return true;
+        }
+    });
+}
+
+function editInputEnterKey() {
+    $('body').on('keypress', '.list-card .edit-input', function (e) {
+        if (e.which == 13) {
+            $(".editBtn").click();
+            return false;
+        }
     });
 }
